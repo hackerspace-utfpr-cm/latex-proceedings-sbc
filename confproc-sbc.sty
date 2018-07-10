@@ -1,0 +1,555 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+
+\usepackage[none]{hyphenat}
+\sloppy
+
+\usepackage{nth}
+
+% Configurações do modelo de artigos da SBC (para manter o padrão)
+%
+\parindent 1.27cm
+\parskip   6pt
+\usepackage{libertine}
+
+% Cabeçalho (center, left)
+\renewcommand{\procchead}{}
+\renewcommand{\proclhead}{}
+
+% Rodapé (center)
+\renewcommand{\proccfoot}{\small\thepage}
+\setlength{\procfootvskip}{1.2mm} % Ajusta da distância do texto do rodapé
+
+% Localização do artigos
+\renewcommand{\PAPERPATH}{}
+
+% Command to turn all letters uppercase
+\newcommand{\allcaps}[1]{\uppercase\expandafter{#1}}
+
+
+\renewcommand{\tableofcontents}{%
+	\clearsingleordoublepage
+	\pdfbookmark[0]{\contentsname}{contents}
+	\chapter*{\contentsname}%
+	\@starttoc{toc}%
+	\clearsingleordoublepage
+}
+
+
+\titlecontents{section}[0em]% left margin
+	{\vspace*{0.5mm}}% space between two papers in the TOC
+	{}%
+	{}%
+	{\hfill \makebox[0pt][r]{\contentspage}}% filler and page
+	[\addvspace{0.5mm}]% space after
+	
+\titlecontents{chapter}[0em]%
+	{\vspace*{2mm}}%
+	{\large\bfseries}%
+	{\large\bfseries}%
+	{}%
+	[\addvspace{0.5mm}]
+
+\titlecontents{part}[0em]%
+	{\vspace*{2mm}}%
+	{\Large\bfseries}%
+	{\Large\bfseries}%
+	{}%
+	[\addvspace{0.5mm}]
+
+\renewcommand{\cleardoublepage}{\clearpage}
+
+\newcommand{\documentname}{Anais | \textit{Proceedings}}
+
+\def\umbrella#1{\gdef\@umbrella{#1}}%
+\def\@umbrella{\@latex@error{No \noexpand\umbrella given}\@ehc}%
+
+\newcommand{\pcchairname}{Coordenadores do Comitê de Programa | \textit{Program Committee Chairs}}
+\def\pcchair#1{\gdef\@pcchair{#1}}%
+\def\@pcchair{\@latex@error{No \noexpand\pcchair given}\@ehc}%
+
+\newcommand{\steeringcommitteename}{\textit{Steering Committee}}
+\def\steeringcommittee#1{\gdef\@steeringcommittee{#1}}%
+\def\@steeringcommittee{\@latex@error{No \noexpand\steeringcommittee given}\@ehc}%
+	
+\newcommand{\proceedingschairname}{Editores | \textit{Proceedings Chairs}}
+\def\proceedingschair#1{\gdef\@proceedingschair{#1}}%
+\def\@proceedingschair{\@latex@error{No \noexpand\proceedingschair given}\@ehc}%
+
+\newcommand{\generalchairname}{Coordenadores Gerais | \textit{General Chairs}}
+\def\generalchair#1{\gdef\@generalchair{#1}}%
+\def\@generalchair{\@latex@error{No \noexpand\generalchair given}\@ehc}%
+
+\newcommand{\realizationname}{Realização | \textit{Realization}}
+\def\realization#1{\gdef\@realization{#1}}%
+\def\@realization{\@latex@error{No \noexpand\realization given}\@ehc}%
+
+\newcommand{\executionname}{Execução | \textit{Execution}}
+\def\execution#1{\gdef\@execution{#1}}%
+\def\@execution{\@latex@error{No \noexpand\execution given}\@ehc}%
+
+\newcommand{\supportname}{Suporte | \textit{Support}}
+\def\support#1{\gdef\@support{#1}}%
+\def\@support{\@latex@error{No \noexpand\support given}\@ehc}%
+
+\newcommand{\sponsorname}{Patrocinadores | \textit{Sponsors}}
+\def\sponsor#1{\gdef\@sponsor{#1}}%
+\def\@sponsor{\@latex@error{No \noexpand\sponsor given}\@ehc}%
+
+\newcommand{\publishername}{Editora | \textit{Publisher}}
+\def\publisher#1{\gdef\@publisher{#1}}%
+\def\@publisher{\@latex@error{No \noexpand\publisher given}\@ehc}%
+
+\def\location#1{\gdef\@location{#1}}%
+\def\@location{\@latex@error{No \noexpand\location given}\@ehc}%
+
+\def\isbn#1{\gdef\@isbn{#1}}%
+\def\@isbn{\@latex@error{No \noexpand\isbn given}\@ehc}%
+
+\def\year#1{\gdef\@year{#1}}%
+\def\@year{\@latex@error{No \noexpand\year given}\@ehc}%
+
+\def\conferencelogo#1{\gdef\@conferencelogo{#1}}%
+\def\@conferencelogo{\@latex@error{No \noexpand\conferencelogo given}\@ehc}%
+
+\def\publisherlogo#1{\gdef\@publisherlogo{#1}}%
+\def\@publisherlogo{\@latex@error{No \noexpand\publisherlogo given}\@ehc}%
+
+\def\publishertext#1{\gdef\@publishertext{#1}}%
+\def\@publishertext{\@latex@error{No \noexpand\publishertext given}\@ehc}%
+
+
+% TODO: this usually requires some minor adjustments
+\renewcommand{\maketitle}{
+\begin{center}
+	\includegraphics[width=.3\textwidth]{\@conferencelogo}
+	\vspace{.1cm}
+
+	\textbf{\large\allcaps{\@title}}
+	
+	{\large\@date}\\
+	{\large\@location}
+	\vspace{.1cm}
+	\vfill
+	
+	\textbf{\LARGE\allcaps{\documentname}}
+	{\Large\@publisher}
+	\vfill
+
+	\textbf{\allcaps{\pcchairname}}\\
+	\@pcchair
+	\vspace{.1cm}
+
+	\textbf{\allcaps{\steeringcommitteename}}\\
+	\@steeringcommittee
+	\vspace{.1cm}
+	
+	\textbf{\allcaps{\proceedingschairname}}\\
+	\@proceedingschair
+	\vspace{.1cm}
+	
+	\textbf{\allcaps{\generalchairname}}\\
+	\@generalchair
+	\vspace{.1cm}
+	
+	\textbf{\allcaps{\realizationname}}\\
+	\@realization
+	\vspace{.1cm}
+
+	\textbf{\allcaps{\executionname}}\\
+	\@execution
+	\vspace{.1cm}
+
+	\textbf{\allcaps{\supportname}}\\
+	\@support
+	\vspace{.1cm}
+
+	\textbf{\allcaps{\sponsorname}}\\
+	\@sponsor
+\end{center}
+\clearpage
+\begin{center}
+\null
+%\vspace{4cm}
+\vfill
+
+\includegraphics[width=.35\textwidth]{\@publisherlogo}
+
+\@publishertext
+
+\vspace{1cm}
+\textbf{ISBN}: \@isbn
+\vfill
+\end{center}
+}
+
+\renewcommand{\procpdfauthor}{\@pcchair} 
+\renewcommand{\procpdftitle}{\@title} % 
+\renewcommand{\procpdfsubject}{\@umbrella -- \@title, \@date, \@location}
+\author{\@pcchair}
+
+\usepackage{imakeidx}
+\makeindex[columns=2, title=\indexname, options= -s example_style.ist]
+
+
+%%%%%%%%%%%%%%%%%%
+\RequirePackage{lastpage}
+\renewcommand{\contentsname}{}
+
+\providecommand{\IESfichacatpumdata}{}
+\newcommand{\fichacatpum}[1]{\renewcommand{\IESfichacatpumdata}{#1}}
+\providecommand{\IESfichacatautordata}{}
+\newcommand{\fichacatautor}[1]{\renewcommand{\IESfichacatautordata}{#1}}
+\providecommand{\IESfichacatpgbibdata}{}
+\newcommand{\fichacatpgbib}[1]{\renewcommand{\IESfichacatpgbibdata}{#1}}
+\providecommand{\IESfichacatpalchadata}{}
+\newcommand{\fichacatpalcha}[1]{\renewcommand{\IESfichacatpalchadata}{#1}}
+\providecommand{\IESfichacatpdoisdata}{}
+\newcommand{\fichacatpdois}[1]{\renewcommand{\IESfichacatpdoisdata}{#1}}
+\providecommand{\IESfichacatbibdata}{}
+\newcommand{\fichacatbib}[1]{\renewcommand{\IESfichacatbibdata}{#1}}
+
+\usepackage{refcount}
+\newcommand{\pagedifference}[2]{%
+    \number\numexpr\getpagerefnumber{#2}-\getpagerefnumber{#1}\relax}
+
+\def\depositshortdate#1{\gdef\@depositshortdate{#1}}%
+\def\@depositshortdate{\@latex@error{No \noexpand\depositshortdate given}\@ehc}%
+
+\def\address#1{\gdef\@address{#1}}%
+\def\@address{\@latex@error{No \noexpand\address given}\@ehc}%
+
+% TODO: review
+\newcommand{\fichacat}{
+    \newcommand{\lenauthor}{\hspace{8px}}
+    \newcommand{\lencore}{\hspace{8px}}
+    \thispagestyle{empty}{
+        \footnotesize{
+            \vspace*{12.8cm}
+            \begin{center}
+                \begin{tabular}{c}
+                    Dados Internacionais de Cataloga\c{c}\~{a}o na Publica\c{c}\~{a}o \\
+                    \\ % TODO: add university name
+                     % TODO: add local library name
+                \end{tabular}
+            \end{center}
+        }
+        \vspace{-25px}
+        \begin{center}
+            \rule{12cm}{1pt}
+        \end{center}
+        \vspace{-15px}
+        \begin{table}[h!]
+            \begin{center}
+                \scriptsize
+                \begin{tabular}{lp{10cm}}
+                    \IESfichacatpumdata
+%                    \lenauthor & \IESfichacatautordata \\
+
+                    \lenauthor & \@title (7. : \@year : \@location). \\
+%                    \lenauthor & \lencore \@title / \@author. \@address. \@depositshortdate.  \\
+                    \\
+                     & \lencore  Proceedings of the \@title / \@date; edited by \proceedingschairname. – \@location: \@publisher, \@year.
+                    \\
+                    \\
+%                     & \lencore Tema central: Software: Teoria e Prática. \\
+%                     & \lencore Disponível em: <Inserir link dos anais>;. \\
+                     & \lencore ISBN: \@isbn \\
+%                               & \lencore \pageref{LastPage}. f. : il. ; 30 cm \\
+%                               & \\
+                               & \lencore \IESfichacatpalchadata \\
+                               & \\
+                               & \hfill \IESfichacatpdoisdata \\
+              \end{tabular}
+      \end{center}
+    \end{table}
+    \vspace{-35px}
+    \begin{center}
+            \rule{12cm}{1pt}
+    \end{center}
+
+    \vspace{-25px}
+    \center \footnotesize \IESfichacatbibdata
+    \newpage
+    }
+}
+
+% Remove page numbering for \procday and \session (if empty)
+%
+\usepackage[titles]{tocloft}
+\renewcommand{\cftsecpresnum}{}
+\renewcommand{\cftsecaftersnum}{}
+\renewcommand{\procday}[1]{%
+%	\phantomsection%
+	\refstepcounter{chapter}
+%	\addtocontents{toc}{#1}
+	\cftaddtitleline{toc}{part}{#1}{}
+}
+\renewcommand{\session}[1]{%
+	\phantomsection%
+%	\addtocontents{toc}{#1}
+	\cftaddtitleline{toc}{chapter}{#1}{}
+}
+\renewcommand*{\numberline}[1]{}
+% \cftsetindents{entry}{indent}{numwidth}
+\cftsetindents{chapter}{0em}{0em}
+\cftsetindents{section}{1em}{0em}
+\renewcommand{\@tocrmarg}{3.6em}
+\renewcommand{\@pnumwidth}{1.6em}
+
+\renewcommand\cftpartafterpnum{\par\vspace{-1em}\noindent\hrulefill\par}
+
+% Redefine \procpaper to support papers with just one page
+%
+\def\procpaper{\@ifnextchar[{\@procpaper}{\@procpaper[]}}
+\def\@procpaper[#1]#2{{%
+\ifthenelse{\equal{\confproc@paperselec}{all}\or\equal{\confproc@paperselec}{#2}}
+  {\setlength{\conf@xshift}{0cm}
+  \setlength{\conf@yshift}{0cm}
+  \setcounter{conf@npages}{1}
+  \setcounter{conf@switch}{1}
+  \def\conf@papertitle{Default paper title}
+  \def\conf@paperauthor{Default paper author list}
+  \def\conf@index{}
+  \def\conf@cite{}
+  \def\conf@bookmark{} %\pdfbookmark[2]{Default paper author 1}{p_XXX.author1}}
+  \setkeys{ppaper}{#1}
+  \iffalse\@twoside \addtolength{\conf@xshift}{0cm}
+  \else \addtolength{\conf@xshift}{\proc@binding} \fi
+
+  \if@proc@ReplacePDFs
+    \immediate\write\npagesfile {file #2.pdf has \theconf@npages \space pages}
+    \clearsingleordoublepage
+    \setcounter{conf@firstpage}{\thenpagespreamble+\thepage}
+    \setcounter{conf@lastpage}{\thenpagespreamble+\thepage+%
+      \theconf@npages-1}
+
+    \phantomsection
+    \addcontentsline{toc}{section}{\proctoctitleauthor{\conf@papertitle}%
+      {\conf@paperauthor}}
+    \ifnum\theconf@npages=0
+      \typeout{confproc: Error, you asked for an empty paper}
+      \typeout{confproc: #2.pdf}
+    \fi
+    \ifnum\theconf@npages=1
+      \confemptypapercite{1}{#2.pdf} \conf@bookmark  \conf@index{}%
+    \fi
+    \ifnum\theconf@npages=2
+      \confemptypaper{1}{#2.pdf} \conf@bookmark \conf@index{}%
+      \newpage \confemptypapercite{2}{#2.pdf}
+    \fi
+    \ifnum\theconf@npages>2
+      \confemptypaper{1}{#2.pdf} \conf@bookmark \conf@index{}%
+      \setcounter{locnpages}{2}
+      \ifthenelse{\thelocnpages<\theconf@npages}%
+        {\typeout{smaller}}%
+        {\typeout{bigger}}
+      \whiledo{\value{locnpages}<\value{conf@npages}}{%
+        \newpage \confemptypaper{\thelocnpages}{#2.pdf}%
+        \addtocounter{locnpages}{1}}
+      \newpage \confemptypapercite{\theconf@npages}{#2.pdf}
+    \fi
+    \setcounter{conf@lastpage}{\thenpagespreamble+\thepage}
+  \else
+    \setcounter{conf@firstpage}{\thenpagespreamble+\thepage}
+    \conf@index{}%
+    \ifconfproc@showpapernumber
+      \cfoot{\color{\confproc@colorheaders}\vskip \procfootvskip %
+        \vskip \procoptfootvskip \proccfoot\\
+        \color{\confproc@colorheaders}[paper \theconf@switch{}]}{}
+    \fi
+    \ifconfproc@checktitle
+      \renewcommand{\conf@tmptitle}{{\color{blue}%
+        \confstylechecktitle\conf@papertitle}}
+    \else
+      \renewcommand{\conf@tmptitle}{}
+    \fi
+    \ifconfproc@checkauthor
+      \renewcommand{\conf@tmpauthorlist}{{\color{blue}%
+        \confstylecheckauthor\conf@paperauthor}}
+    \else
+      \renewcommand{\conf@tmpauthorlist}{}
+    \fi
+    \renewcommand{\conf@pagecmd}{\conf@tmptitle\\ \conf@tmpauthorlist}
+
+    \if@proc@IncludeFullPDFs    % include all pages in order to count!!!
+%      \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},pages=1-,%
+%        linktodoc,linkname=\PAPERPATH #2.pdf,%
+%        addtotoc={1, section, 1, %
+%          \proctoctitleauthor{\conf@papertitle}{\conf@paperauthor},%
+%            \theconf@switch},%
+%        pagecommand = {\conf@pagecmd\procmarginlines %
+%          \conf@bookmark \PDFpagestyle}%
+%        ]{\PAPERPATH #2.pdf}
+      \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},pages=1-,%
+        addtotoc={1, section, 1, \proctoctitleauthor{\conf@papertitle}{\conf@paperauthor},\theconf@switch},%
+        pagecommand = {\procmarginlines \PDFpagestyle}%
+        ]{\PAPERPATH #2.pdf}%
+    \else
+      \ifnum\theconf@npages=1 % 1-page paper
+        \if@proc@verbose
+          \typeout{confproc: 1-page long paper}
+        \fi
+        \if@proc@BibNone
+          \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+            pages=1,%
+            addtotoc={1, section, 1, %
+              \proctoctitleauthor{\conf@papertitle}{\conf@paperauthor},%
+                \theconf@switch},%
+            pagecommand = {\conf@pagecmd\procmarginlines %
+              \conf@bookmark \PDFpagestyle}%
+            ]{\PAPERPATH #2.pdf}%
+        \else
+          \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+            pages=1,%
+            addtotoc={1, section, 1,%
+              \proctoctitleauthor{\conf@papertitle}{\conf@paperauthor},%
+                \theconf@switch},%
+            pagecommand = {\conf@pagecmd\procmarginlines %
+              \conf@bookmark \PDFpagestyle\vspace*{-1cm}\confcite{\conf@cite}}%
+            ]{\PAPERPATH #2.pdf}%
+        \fi
+      \else
+        \ifnum\theconf@npages=2 % 2-pages paper
+          \if@proc@verbose\typeout{confproc: 2-page long paper}\fi
+          \if@proc@BibNone
+            \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+              pages=1,%
+              addtotoc={1, section, 1, %
+                \proctoctitleauthor{\conf@papertitle}{\conf@paperauthor},%
+                  \theconf@switch},%
+              pagecommand = {\conf@pagecmd\procmarginlines \conf@bookmark %
+                \PDFpagestyle}%
+              ]{\PAPERPATH #2.pdf}%
+            \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+              pages=2,%
+              pagecommand = {\procmarginlines \PDFpagestyle}%
+              ]{\PAPERPATH #2.pdf}%
+          \else
+            \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+              pages=1,%
+              addtotoc={1, section, 1, %
+                \proctoctitleauthor{\conf@papertitle}{\conf@paperauthor},%
+                  \theconf@switch},%
+              pagecommand = {\conf@pagecmd\procmarginlines \conf@bookmark %
+                \PDFpagestyle\vspace*{-1cm}\confcite{\conf@cite}}%
+              ]{\PAPERPATH #2.pdf}%
+            \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+              pages=2,%
+              pagecommand = {\procmarginlines %
+                \PDFpagestyle\vspace*{-2cm}\confcite{\conf@cite}}%
+              ]{\PAPERPATH #2.pdf}%
+          \fi
+        \else % 3 pages and more
+          \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+            pages=1,%
+            addtotoc={1, section, 1, %
+              \proctoctitleauthor{\conf@papertitle}{\conf@paperauthor},%
+                \theconf@switch},%
+            pagecommand = {\conf@pagecmd\procmarginlines %
+              \conf@bookmark \PDFpagestyle}%
+            ]{\PAPERPATH #2.pdf}%
+          \ifdefined\conf@BibMerge%
+            \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+              pages=\theconf@npages,%
+              pagecommand = {\procmarginlines %
+                \PDFpagestyle\vspace*{-2cm}\confcite{\conf@cite}}%
+              ]{\PAPERPATH #2.pdf}%
+            \PDFpagestyle{}%
+            \if@proc@verbose\typeout{confproc: bibliography insertion only}\fi
+          \else
+            \addtocounter{conf@npages}{-1}
+            \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+              pages=2-\theconf@npages,%
+              pagecommand = {\procmarginlines \PDFpagestyle}%
+              ]{\PAPERPATH #2.pdf}%
+            \PDFpagestyle{}%
+            \addtocounter{conf@npages}{1}
+            \if@proc@BibNone
+              \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+                pages=\theconf@npages,%
+                pagecommand = {\procmarginlines \PDFpagestyle}%
+                ]{\PAPERPATH #2.pdf}%
+            \else
+              \includepdf[noautoscale,offset=\conf@xshift{} \conf@yshift{},%
+                pages=\theconf@npages,%
+                pagecommand = {\procmarginlines %
+                  \PDFpagestyle\vspace*{-2cm}\confcite{\conf@cite}}%
+                ]{\PAPERPATH #2.pdf}%
+            \fi
+          \fi
+        \fi
+      \fi
+      \if@proc@verbose
+        \typeout{confproc: partial paper insertion %
+          (last page=bib items)}
+      \fi
+    \fi
+    \setcounter{conf@lastpage}{\thenpagespreamble+\thepage-1}
+    \setcounter{conf@npages}{\theconf@lastpage}
+    \addtocounter{conf@npages}{- \theconf@firstpage}
+    \immediate\write\npagesfile{file #2.pdf has \theconf@npages \space pages}
+    \newpage
+    \ifconfproc@twosidepapers \cleardoublepage
+    \else \clearpage \fi
+  \fi
+  \if@proc@verbose
+    \typeout{______ debug: insert paper ______}
+    \typeout{confproc/file: #2.pdf (\theconf@npages \space pages)}
+    \typeout{confproc/title: \conf@papertitle}
+    \typeout{confproc/authors: \conf@paperauthor}
+    \typeout{confproc/index: \conf@index}
+    \typeout{confproc/shift: (\the\conf@xshift, \the\conf@yshift)}
+    \typeout{confproc/citations: \conf@cite}
+    \typeout{confproc/bookmarks: \conf@bookmark}
+    \typeout{confproc/switch ID: \theconf@switch}
+    \typeout{_______________________}
+  \fi
+  \ifconfproc@pdftk
+%%-- pdftk version: !!! does not work with PDF v > 1.3
+%%    \immediate\write\pdftkinfoall{pdftk A=${PDFFILE} cat A\arabic{conf@firstpage}-\arabic{conf@lastpage} output ${SPPATH}/#2.pdf}
+%%-- Ghostscript version: ok with PDF v = 1.4
+    \immediate\write\pdftkinfoall{qpdf ${PDFFILE} --pages ${PDFFILE} \arabic{conf@firstpage}-\arabic{conf@lastpage} -- ${SPPATH}/#2.pdf}
+
+    \immediate\openout\pdftkinfofile=\confproc@pdftkfolder/#2.pdftk
+    \immediate\write\pdftkinfofile {InfoKey: Title}
+    \immediate\write\pdftkinfofile {InfoValue: \conf@papertitle}
+    \immediate\write\pdftkinfofile {InfoKey: Author}
+    \immediate\write\pdftkinfofile {InfoValue: \conf@paperauthor}
+    \immediate\write\pdftkinfofile {InfoKey: Subject}
+    \immediate\write\pdftkinfofile {InfoValue: \confproc@pdftksubject}
+    \immediate\write\pdftkinfofile {InfoKey: Producer}
+    \immediate\write\pdftkinfofile {InfoValue: \confproc@pdftkproducer}
+    \immediate\write\pdftkinfofile {InfoKey: Creator}
+    \immediate\write\pdftkinfofile {InfoValue: \confproc@pdftkcreator}
+    \immediate\closeout\pdftkinfofile
+    \ifconfproc@verbose
+      \typeout{________________}
+      \typeout{pdftk A=${PDFFILE} cat A\arabic{conf@firstpage}-\arabic{conf@lastpage} output ${SPPATH}/#2.pdf}
+      \typeout{gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dFirstPage=\arabic{conf@firstpage} -dLastPage=\arabic{conf@lastpage} -sOUTPUTFILE=${SPPATH}/#2.pdf ${PDFFILE}}
+      \typeout{InfoName: #2.info}
+      \typeout{InfoKey: Title}
+      \typeout{InfoValue: \conf@papertitle}
+      \typeout{InfoKey: Author}
+      \typeout{InfoValue: \conf@paperauthor}
+      \typeout{InfoKey: Subject}
+      \typeout{InfoValue: \confproc@pdftksubject}
+      \typeout{InfoKey: Producer}
+      \typeout{InfoValue: \confproc@pdftkproducer}
+      \typeout{InfoKey: Creator}
+      \typeout{InfoValue: \confproc@pdftkcreator}
+      \typeout{InfoEnd}
+    \fi
+  \fi
+  }{}
+}}
+
+% Fix page numbering used for splitting papers
+%
+\usepackage{pageslts}
+\let\oldmainmatter\mainmatter
+\renewcommand{\mainmatter}{
+        \setcounter{npagespreamble}{\theCurrentPage-1}
+        \oldmainmatter
+}

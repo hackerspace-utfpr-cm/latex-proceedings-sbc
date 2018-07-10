@@ -1,0 +1,39 @@
+\documentclass[%
+	a4paper, % a4paper, letterpaper
+	12pt, % 10pt, 11pt, 12pt
+	oneside, % oneside, twoside
+	onesidepapers, % onesidepapers, twosidepapers
+	eletronic, % printed, eletronic
+	binding=0mm, % only use if preparing a paperback version
+	papers=countpages, %  empty, draft, final, countpages
+	headers=allpages, % allpages, none, onlypdf, exceptpdf
+	bib=none, % none, merge, backref, last
+	paperselec=all, % all, id of papers to be inserted within braces
+	onecoltoc, % onecoltoc, twocoltoc
+	tocnum=right, % left, right
+	hyperref={a4paper,bookmarksdepth=2,bookmarksopen,bookmarksopenlevel=0,linkcolor=black,urlcolor=black},%
+	geometry={a4paper,top=3.5cm,left=3cm,right=3cm,bottom=2.5cm},
+	pdftk
+]{confproc}
+
+\usepackage{confproc-sbc}
+\usepackage{confproc-configuration}
+
+
+\begin{document}
+\frontmatter
+\includepdf[pages=1,link]{blank-page.pdf}  % Coverpage
+\setcounter{page}{1}
+\maketitle
+% \fichacat % Optional (or not fully supported :-)
+\include{message}
+\include{tc}
+\tableofcontents
+
+\mainmatter
+\include{sessions}
+
+\backmatter
+\insertindex
+
+\end{document}
