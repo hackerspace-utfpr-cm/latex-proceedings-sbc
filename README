@@ -1,0 +1,8 @@
+Required packages (Fedora):
+  texlive-tabulary
+  texlive-confproc
+  texlive-hyphenat
+  texlive-undolabl
+  texlive-inconsolata
+  levien-inconsolata-fonts
+  texlive-upquote
