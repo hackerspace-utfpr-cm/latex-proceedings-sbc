@@ -1,8 +1,25 @@
-Required packages (Fedora):
+Install required packages (Fedora):
+
   texlive-tabulary
   texlive-confproc
   texlive-hyphenat
+  texlive-libertine
   texlive-undolabl
   texlive-inconsolata
   levien-inconsolata-fonts
   texlive-upquote
+  texlive-imakeidx
+  texlive-tocloft
+  perl-Image-ExifTool
+  qpdf
+
+Update 'confproc-configuration.sty' with event information.
+
+Edit 'sessions.tex', adding papers as required. You may use the output of 'csv2toc.py'
+to provide paper data, as extracted from 'papers.csv'.
+
+Edit 'tc.tex'.
+
+Run 'make' to create the proceedings (root.pdf).
+
+Run 'make split-pages' to output numbered papers.
