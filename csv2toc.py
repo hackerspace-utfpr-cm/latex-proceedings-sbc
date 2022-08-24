@@ -18,7 +18,7 @@ class Author():
         self.affiliation = ""
         self.email = ""
 
-with open('SBES 2017.csv', 'r') as csvfile:
+with open('papers.csv', 'r') as csvfile:
     papers = []
     papers_data = csv.reader(csvfile, delimiter = ',', quotechar='"')
     for row in papers_data:
@@ -62,12 +62,7 @@ with open('SBES 2017.csv', 'r') as csvfile:
             print('\index{' + author.name + '}', end = '')
         print('}]', end = '')
         print('{', end = '')
-        if paper.track == 'Research':
-            paper_directory = os.path.join('papers', 'research')
-        elif paper.track == 'Education':
-            paper_directory = os.path.join('papers', 'education')
-        else:
-            paper_directory = os.path.join('papers', 'insightful-ideas')
+        paper_directory = os.path.join('papers', paper.track.lower().replace(' ', '-'))
         for filename in sorted(glob.glob(os.path.join(paper_directory, str(paper.number) + '*.pdf'))):
             paper_filename = filename[:-len('.pdf')]
         print(paper_filename + '}') 
