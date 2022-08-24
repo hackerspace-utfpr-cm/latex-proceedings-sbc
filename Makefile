@@ -25,6 +25,6 @@ pdf:
 
 split-pages: 
 	# TODO: edit papers_split_all.sh to disconsider pages from frontmatter when setting the start and end pages
-	mkdir -p papers-info papers-numbered papers papers-tkinfo
-	./exportIndividualPDFs.sh `pwd` root papers-info papers-numbered papers papers-tkinfo
+	mkdir -p papers-info papers-numbered/papers
+	./exportIndividualPDFs.sh `pwd` root papers-info papers-numbered papers papers
 	./fixPDFs.sh
