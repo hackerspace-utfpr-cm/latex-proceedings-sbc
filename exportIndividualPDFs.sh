@@ -24,6 +24,8 @@ cd $PDFTKPATH
 list=`ls *.pdftk`
 for tmpfile in $list
 do
+  echo $tmpfile
+  echo '-----------------------------------------------------'
   cp ${tmpfile} test.txt
   #-- 2-concat all lines, removing carriage returns
   sed -e :a -e '$!N;s/\n/LineBreak/;ta' -e 'P;D' test.txt >test2.txt
@@ -57,7 +59,7 @@ echo "__ split PDFs: launch bash script file"
 chmod +x papers_split_all.sh
 
 echo "cmd: ./papers_split_all.sh"
-#echo "    ./papers_split_all.sh ${GPATH} ${TEXFILE} ${INPATH} ${SPPATH} ${PDFPATH}"
+echo "    ./papers_split_all.sh ${GPATH} ${TEXFILE} ${INPATH} ${SPPATH} ${PDFPATH}"
 ./papers_split_all.sh ${GPATH} ${TEXFILE} ${INPATH} ${SPPATH} ${PDFPATH}
 # rm ${SPPATH}/*.ps #useful only if 'pdf2ps -> ps2pdf', not useful with 'gs'
 
