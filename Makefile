@@ -15,7 +15,7 @@ check:
 clean:
 	rm -f *~ *.log *.aux *.toc *.dvi *.bbl *.blg *.*~* *.lof *.lot *.cb *.backup *.out *.glo *.idx *.fls *.lol *.ilg *.gls *.plog *.ind *.npc *.nps
 	find . -name "*.pdftk" -delete
-	find papers-numbered -name "*.pdf*" -delete
+	-find papers-numbered -name "*.pdf*" -delete
 
 pdf:
 	-$(PDFLATEX) -draftmode $(PDFLATEX_ARGS) $(ROOT)
